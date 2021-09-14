@@ -1,3 +1,5 @@
+const { ethers, upgrades } = require("hardhat");
+
 async function main() {
     const [deployer] = await ethers.getSigners();
 
@@ -8,9 +10,10 @@ async function main() {
     console.log("Account balance:", (await deployer.getBalance()).toString());
   
     const Token = await ethers.getContractFactory("RipioCoin");
-    const token = await Token.deploy();
+
+    const token = await upgrades.deployProxy(Token, [], {gasLimit: "5000000"});
+
     await token.deployed();
-    await token.initialize();
     console.log("Token address:", token.address);
     console.log("Token balance:", (await token.balanceOf(deployer.address)).toString());
 }

@@ -1,5 +1,6 @@
 require('dotenv').config();
 require("@nomiclabs/hardhat-waffle");
+require('@openzeppelin/hardhat-upgrades');
 
 const { MAINNET_API_KEY, RINKEBY_API_KEY, MAINNET_PRIVATE_KEY } = process.env;
 
