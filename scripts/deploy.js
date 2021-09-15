@@ -11,7 +11,7 @@ async function main() {
   
     const Token = await ethers.getContractFactory("RipioCoin");
 
-    const token = await upgrades.deployProxy(Token, [], {gasLimit: "5000000"});
+    const token = await upgrades.deployProxy(Token, []);
 
     await token.deployed();
     console.log("Token address:", token.address);
